@@ -23,7 +23,7 @@ public class Server {
 class ClientSocket extends Thread {
     Socket connection;
     String username;
-    Client(Socket c) {connection = c;}
+    ClientSocket(Socket c) {connection = c    ;}
 
     public void run() {
         try {
@@ -34,7 +34,7 @@ class ClientSocket extends Thread {
             while (input.hasNextLine()) {
                 String message = username + ": " + input.nextLine();
                 //Send messages to all clients
-                for (Client c : Server.clients) {
+                for (ClientSocket c : Server.clients) {
                     try {
                         PrintWriter printwriter = new PrintWriter(c.connection.getOutputStream(), true);
                         printwriter.println(message);
